@@ -1,0 +1,29 @@
+
+import 'package:flutter/material.dart';
+import 'package:power_guard/Core/Constants/app_colors.dart';
+
+class BackArrow extends StatelessWidget {
+  const BackArrow({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(width: 20),
+        IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: AppColors.textPrimaryColor,
+            size: 24,
+          ),
+          padding: EdgeInsets.zero,
+          alignment: Alignment.centerLeft,
+          onPressed: () => Navigator.pop(context),
+        ),
+      ],
+    );
+  }
+}
