@@ -11,18 +11,46 @@ import 'package:power_guard/Core/Presentation/Widgets/consumption_graph_card.dar
 import 'package:power_guard/Features/Department/Presentation/Widgets/last_read_card.dart';
 import 'package:power_guard/Features/Department/Presentation/Widgets/usage_table_row.dart';
 
-
-
 class DeptHomeScreen extends StatelessWidget {
   const DeptHomeScreen({super.key});
 
   static const List<Map<String, dynamic>> _usageData = [
-    {'time': 'PM\n02:15', 'val': '350', 'cons': '45+', 'status': RowStatus.normal},
-    {'time': 'PM\n01:30', 'val': '750', 'cons': '300+', 'status': RowStatus.critical},
-    {'time': 'AM\n10:00', 'val': '205', 'cons': '55+', 'status': RowStatus.normal},
-    {'time': 'AM\n09:20', 'val': '150', 'cons': '40+', 'status': RowStatus.normal},
-    {'time': 'AM\n08:45', 'val': '110', 'cons': '60+', 'status': RowStatus.normal},
-    {'time': 'AM\n08:00', 'val': '50', 'cons': '50+', 'status': RowStatus.normal},
+    {
+      'time': 'PM\n02:15',
+      'val': '350',
+      'cons': '45+',
+      'status': RowStatus.normal,
+    },
+    {
+      'time': 'PM\n01:30',
+      'val': '750',
+      'cons': '300+',
+      'status': RowStatus.critical,
+    },
+    {
+      'time': 'AM\n10:00',
+      'val': '205',
+      'cons': '55+',
+      'status': RowStatus.normal,
+    },
+    {
+      'time': 'AM\n09:20',
+      'val': '150',
+      'cons': '40+',
+      'status': RowStatus.normal,
+    },
+    {
+      'time': 'AM\n08:45',
+      'val': '110',
+      'cons': '60+',
+      'status': RowStatus.normal,
+    },
+    {
+      'time': 'AM\n08:00',
+      'val': '50',
+      'cons': '50+',
+      'status': RowStatus.normal,
+    },
   ];
 
   @override
@@ -42,7 +70,10 @@ class DeptHomeScreen extends StatelessWidget {
             CustomHeader(
               title: AppStrings.overviewHeader,
               trailing: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2.5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 2.5,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.primary100Color,
                   borderRadius: BorderRadius.circular(20),
@@ -62,13 +93,11 @@ class DeptHomeScreen extends StatelessWidget {
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
                   ),
-
                 ),
               ),
             ),
 
             const SizedBox(height: 20),
-
 
             // 2. KPI Cards
             KpiCard.buildKpiRow(
@@ -98,8 +127,7 @@ class DeptHomeScreen extends StatelessWidget {
             CustomHeader(
               title: AppStrings.activeAlertsHeader,
               trailing: TextButton(
-                onPressed: () {
-                 },
+                onPressed: () {},
                 child: Text(
                   AppStrings.viewAll,
                   style: TextStyle(
@@ -147,10 +175,7 @@ class DeptHomeScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.lightBg,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: AppColors.lightBg,
-                  width: 2,
-                ),
+                border: Border.all(color: AppColors.lightBg, width: 2),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withAlpha(50),
@@ -164,12 +189,14 @@ class DeptHomeScreen extends StatelessWidget {
                   _buildUsageTableHeader(),
                   const Divider(color: AppColors.lightGreyBg, height: 1),
                   // Data
-                  ..._usageData.map((data) => UsageTableRow(
-                    time: data['time'],
-                    value: data['val'],
-                    consumption: data['cons'],
-                    status: data['status'],
-                  )),
+                  ..._usageData.map(
+                    (data) => UsageTableRow(
+                      time: data['time'],
+                      value: data['val'],
+                      consumption: data['cons'],
+                      status: data['status'],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -178,15 +205,12 @@ class DeptHomeScreen extends StatelessWidget {
 
             _buildActionButtons(context),
             const SizedBox(height: 90),
-      ],
+          ],
         ),
       ),
 
-
       // Bottom Bar
-      bottomNavigationBar: const SharedBottomNav(
-        currentIndex: 0,
-      ),
+      bottomNavigationBar: const SharedBottomNav(currentIndex: 0),
     );
   }
 
@@ -195,21 +219,55 @@ class DeptHomeScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         children: const [
-          Expanded(child: Text('(TIME)', style: TextStyle(color: AppColors.primaryColor, fontSize: 10, fontWeight: FontWeight.w600))),
+          Expanded(
+            child: Text(
+              '(TIME)',
+              style: TextStyle(
+                color: AppColors.primaryColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           Expanded(child: SizedBox()),
 
-          Expanded(child: Text('(VALUE)', style: TextStyle(color: AppColors.primaryColor, fontSize: 10, fontWeight: FontWeight.w600))),
+          Expanded(
+            child: Text(
+              '(VALUE)',
+              style: TextStyle(
+                color: AppColors.primaryColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           Expanded(child: SizedBox()),
 
-          Expanded(child: Text('(CONSUMPTION)', style: TextStyle(color: AppColors.primaryColor, fontSize: 10, fontWeight: FontWeight.w600))),
+          Expanded(
+            child: Text(
+              '(CONSUMPTION)',
+              style: TextStyle(
+                color: AppColors.primaryColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           Expanded(child: SizedBox()),
-          Expanded(child: Text('(STATUS)', style: TextStyle(color: AppColors.primaryColor, fontSize: 10, fontWeight: FontWeight.w600))),
+          Expanded(
+            child: Text(
+              '(STATUS)',
+              style: TextStyle(
+                color: AppColors.primaryColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
-
-
 
   // --- UI Helpers ---
   Widget _buildActionButtons(BuildContext context) {
@@ -233,8 +291,6 @@ class DeptHomeScreen extends StatelessWidget {
       ],
     );
   }
-
-
 
   Widget buildBadge(String text, {bool isWhite = false}) {
     return Container(
@@ -274,7 +330,7 @@ class DeptHomeScreen extends StatelessWidget {
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
-          ]
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -12,7 +12,8 @@ import 'package:power_guard/Features/Factory/Presentation/Widgets/efficiency_by_
 import 'package:power_guard/Features/Factory/Presentation/Widgets/distribution_of_sections.dart';
 import 'package:power_guard/Features/Factory/Presentation/Widgets/set_department_limits.dart';
 import 'package:power_guard/Features/Factory/Presentation/Widgets/factory_status.dart';
-
+import 'package:power_guard/Features/Factory/Presentation/Widgets/section_card.dart';
+import 'package:power_guard/Features/Factory/Presentation/Widgets/limit_row.dart';
 
 class FactoryManagerScreen extends StatefulWidget {
   const FactoryManagerScreen({super.key});
@@ -41,7 +42,9 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
               title: AppStrings.overviewHeader,
               trailing: Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 2.5),
+                  horizontal: 16,
+                  vertical: 2.5,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.primary100Color,
                   borderRadius: BorderRadius.circular(20),
@@ -66,8 +69,7 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
             ),
             const SizedBox(height: 20),
 
-
-            // 2. KPI Cards 1
+            // KPI Cards
             KpiCard.buildKpiRow(
               height: 135,
               value1: AppStrings.spendingValue,
@@ -79,16 +81,17 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
               trailing1: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.arrow_drop_down, color: Colors.greenAccent, size: 20),
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.greenAccent,
+                    size: 20,
+                  ),
                   Text(
                     AppStrings.spendingTrend2,
                     style: TextStyle(color: Colors.greenAccent, fontSize: 10),
                   ),
                 ],
               ),
-
-
-              // Card 2
               value2: AppStrings.limitValue,
               valueFontSize2: 20,
               label2: AppStrings.dailyAvailableLimit,
@@ -97,23 +100,25 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
               color2: AppColors.onBoardingBlue2,
               trailing2: Padding(
                 padding: const EdgeInsets.only(top: 15.0),
-              child: SizedBox(
-                width: 100,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: LinearProgressIndicator(
-                    value: 0.8,
-                    backgroundColor: Color(0xFFD9D9D9),
-                    valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF4A5AB5)),
-                    minHeight: 6.5,
+                child: SizedBox(
+                  width: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: const LinearProgressIndicator(
+                      value: 0.8,
+                      backgroundColor: Color(0xFFD9D9D9),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Color(0xFF4A5AB5),
+                      ),
+                      minHeight: 6.5,
+                    ),
                   ),
                 ),
               ),
-             ),
             ),
             const SizedBox(height: 20),
 
-            // 3. Status Card
+            // Status Cards
             InfoStatusCard(
               title: AppStrings.factoryStatusTitle,
               subtitle: AppStrings.statusHighConsumption,
@@ -121,8 +126,7 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
               iconPath: Assets.imagesGroup,
               backgroundColor: AppColors.accentBlue,
               contentColor: Colors.white,
-             ),
-
+            ),
             const SizedBox(height: 25),
 
             InfoStatusCard(
@@ -132,15 +136,14 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
               iconPath: Assets.imagesVector,
               backgroundColor: AppColors.lightBg,
               contentColor: AppColors.primaryColor,
-             )
-            ,
+            ),
             const SizedBox(height: 25),
 
             // Distribution
             const DistributionSectionsCard(),
             const SizedBox(height: 25),
 
-            // 5. Consumption Graph
+            // Consumption Graph
             const ConsumptionGraphCard(
               value: AppStrings.hourlyPulseValue,
               trend: '5% less than yesterday',
@@ -148,12 +151,11 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
             ),
             const SizedBox(height: 25),
 
-            // Alerts & View All
+            // Alerts
             CustomHeader(
               title: AppStrings.activeAlertsHeader,
               trailing: TextButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 child: Text(
                   AppStrings.viewAll,
                   style: TextStyle(
@@ -166,7 +168,6 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
             ),
             const SizedBox(height: 12),
 
-            // 6. Alerts
             AlertCardWidget(
               machineName: 'Machine 1',
               sectorInfo: 'Sector 4 • 124 kWh',
@@ -193,81 +194,30 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
             // Set Department Limits
             const SetDepartmentLimitsPage(),
             const SizedBox(height: 150),
-           ],
+          ],
         ),
       ),
-
-
-       // Bottom Navigation Bar
-       bottomNavigationBar: SharedBottomNav(
-         currentIndex: 0,
-         customItems: [
-           CustomNavItem(assetPath: Assets.imagesHome, label: AppStrings.homeBtn),
-           CustomNavItem(assetPath: Assets.imagesFactories, label: AppStrings.factoriesBtn),
-           CustomNavItem(assetPath: Assets.imagesAlert, label: AppStrings.alertsLabel),
-           CustomNavItem(assetPath: Assets.imagesProfile, label: AppStrings.profileBtn),
-          ],
-       )
-    );
-  }
-
-  // --- UI Helpers ---
-
-  Widget buildKpiBadge(String text) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha(80),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.white, fontSize: 9),
-      ),
-    );
-  }
-
-  Widget buildSectionCard({required String title, required Widget child}) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(50),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          )
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: const TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 16)),
-          const SizedBox(height: 16),
-          child,
+      bottomNavigationBar: SharedBottomNav(
+        currentIndex: 0,
+        customItems: [
+          CustomNavItem(
+            assetPath: Assets.imagesHome,
+            label: AppStrings.homeBtn,
+          ),
+          CustomNavItem(
+            assetPath: Assets.imagesFactories,
+            label: AppStrings.factoriesBtn,
+          ),
+          CustomNavItem(
+            assetPath: Assets.imagesAlert,
+            label: AppStrings.alertsLabel,
+          ),
+          CustomNavItem(
+            assetPath: Assets.imagesProfile,
+            label: AppStrings.profileBtn,
+          ),
         ],
       ),
     );
   }
-
-
-  Widget buildLimitRow(String name, String limit, IconData icon, bool val) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: CircleAvatar(
-          backgroundColor: AppColors.primary100Color,
-          child: Icon(icon, color: AppColors.primaryColor)),
-      title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: Text('Max: $limit'),
-      trailing: Switch(
-        value: val,
-        onChanged: (bool v) {},
-        activeTrackColor: AppColors.primaryColor,
-      ),
-    );
-  }
-
 }

@@ -16,26 +16,36 @@ class OTPScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
-            child: Column(
-              children: [
-                SizedBox(height: 20),
-                BackArrow(),
-                AuthHeader(
-                  title: AppStrings.appName,
-                  subtitle: AppStrings.enterOtp,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  height: 66,
-                  textColor: AppColors.primaryColor,
-                ),
-                OtpInputWidget(),
-                SizedBox(height: 62),
-                CustomFormButton(
-                  innerText: AppStrings.confirm,
-                  onPressed: () =>
-                      Navigator.pushNamed(context, AppRoutes.homeScreen),
-                ),
-              ],
+            child: Padding(
+              // FIX: Add horizontal padding to prevent overflow on narrow screens
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  const BackArrow(),
+                  AuthHeader(
+                    title: AppStrings.appName,
+                    subtitle: AppStrings.enterOtp,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    height: 66,
+                    textColor: AppColors.primaryColor,
+                  ),
+                  // FIX: Wrap with ConstrainedBox to prevent overflow
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width - 40,
+                    ),
+                    child: OtpInputWidget(),
+                  ),
+                  const SizedBox(height: 62),
+                  CustomFormButton(
+                    innerText: AppStrings.confirm,
+                    onPressed: () =>
+                        Navigator.pushNamed(context, AppRoutes.homeScreen),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

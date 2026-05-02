@@ -1,6 +1,6 @@
 class AppRoutes {
-  static const String debugMenu = '/';
-  static const String onboardingScreen = 'onboarding';
+  static const String debugMenu = '/debug';
+  static const String onboardingScreen = '/';
   static const String welcomeScreen = 'welcome';
   static const String loginScreen = 'login';
   static const String signupScreen = 'signup';
@@ -12,7 +12,7 @@ class AppRoutes {
   static const String adminHomeScreen = 'admin_home';
   static const String adminFactoriesScreen = 'admin_factories';
   static const String adminInboxScreen = 'admin_inbox';
-   static const String deptHomeScreen = 'dept_home';
+  static const String deptHomeScreen = 'dept_home';
   static const String electricityReadingScreen = 'electricity_reading';
   static const String reportIssueScreen = 'report_issue';
   static const String issueDetailsScreen = 'issue_details';
@@ -20,5 +20,4 @@ class AppRoutes {
   static const String factoryMangerScreen = 'factory_manger';
   static const String factoryEmergencyScreen = 'factory_emergency';
   static const String emergencyAlertScreen = 'emergency_alert';
-
 }

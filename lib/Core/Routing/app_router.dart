@@ -11,15 +11,17 @@ import 'package:power_guard/Features/Auth/Presentation/Screens/otp_screen.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/signup_screen.dart';
 import 'package:power_guard/Features/Department/Presentation/Screens/electricity_reading_screen.dart';
 import 'package:power_guard/Features/Department/Presentation/Screens/report_issue_screen.dart';
-import 'package:power_guard/Features/Department/Presentation/Screens/dept_home_screen.dart';
-import 'package:power_guard/Features/Department/Presentation/Screens/dept_emergency_screen.dart';
+import 'package:power_guard/Features/Department/Presentation/Screens/dept_home_screen.dart'
+    show DeptHomeScreen;
+import 'package:power_guard/Features/Department/Presentation/Screens/dept_emergency_screen.dart'
+    show DeptEmergencyScreen;
 import 'package:power_guard/Features/Factory/Presentation/Screens/factory_manger_screen.dart';
 import 'package:power_guard/Features/Factory/Presentation/Screens/factory_emergency_screen.dart';
 import '../../Features/Onboarding/Presentation/Screens/onboarding_screen.dart';
-import '../Presentation/Widgets/emergency_alert_screen.dart' show EmergencyAlertScreen;
+import '../Presentation/Widgets/emergency_alert_screen.dart'
+    show EmergencyAlertScreen;
 import '../../Features/Assign/Presentation/Screens/app_under_review_screen.dart';
 import '../../Features/Assign/Presentation/Screens/register_factory_screen.dart';
-
 
 class AppRouter {
   static Route generateRoute(RouteSettings settings) {
@@ -27,10 +29,11 @@ class AppRouter {
       case AppRoutes.debugMenu:
         return MaterialPageRoute(builder: (context) => const DebugMenuScreen());
       case AppRoutes.onboardingScreen:
-        return MaterialPageRoute(builder: (context) => const OnboardingScreen());
+        return MaterialPageRoute(
+          builder: (context) => const OnboardingScreen(),
+        );
       case AppRoutes.welcomeScreen:
         return MaterialPageRoute(builder: (context) => const WelcomeScreen());
-
       case AppRoutes.loginScreen:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case AppRoutes.signupScreen:
@@ -39,48 +42,39 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const ForgotPasswordScreen(),
         );
-
       case AppRoutes.otpScreen:
         return MaterialPageRoute(builder: (context) => const OTPScreen());
-
-        case AppRoutes.registerFactoryScreen:
+      case AppRoutes.registerFactoryScreen:
         return MaterialPageRoute(
           builder: (context) => const RegisterFactoryScreen(),
         );
-
-        case AppRoutes.applicationUnderReviewScreen:
-          return MaterialPageRoute(
-            builder: (context) => const ApplicationUnderReviewScreen(
-              factoryName: '',
-              factoryLocation: '',
-              factoryDescription: '',
-            ),
-          );
-
+      case AppRoutes.applicationUnderReviewScreen:
+        return MaterialPageRoute(
+          builder: (context) => const ApplicationUnderReviewScreen(
+            factoryName: '',
+            factoryLocation: '',
+            factoryDescription: '',
+          ),
+        );
       case AppRoutes.adminHomeScreen:
         return MaterialPageRoute(builder: (context) => const AdminHomeScreen());
-
       case AppRoutes.adminFactoriesScreen:
         return MaterialPageRoute(
           builder: (context) => const AdminFactoriesScreen(),
         );
-
       case AppRoutes.adminInboxScreen:
         return MaterialPageRoute(
           builder: (context) => const AdminInboxScreen(),
         );
-
       case AppRoutes.electricityReadingScreen:
         return MaterialPageRoute(
           builder: (context) => const ElectricityReadingScreen(),
         );
-
       case AppRoutes.reportIssueScreen:
         return MaterialPageRoute(
           builder: (context) => const ReportIssueScreen(),
         );
-
-        case AppRoutes.emergencyAlertScreen:
+      case AppRoutes.emergencyAlertScreen:
         return MaterialPageRoute(
           builder: (context) => const EmergencyAlertScreen(),
         );
@@ -88,29 +82,21 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const DeptEmergencyScreen(),
         );
-
-        case AppRoutes.factoryMangerScreen:
+      case AppRoutes.factoryMangerScreen:
         return MaterialPageRoute(
           builder: (context) => const FactoryManagerScreen(),
         );
-
       case AppRoutes.factoryEmergencyScreen:
         return MaterialPageRoute(
           builder: (context) => const FactoryEmergencyScreen(),
         );
-
-
       case AppRoutes.deptHomeScreen:
         return MaterialPageRoute(builder: (context) => const DeptHomeScreen());
       default:
         return MaterialPageRoute(
-          builder: (context) {
-            return Scaffold(
-              body: Center(
-                child: Text("No route defined for ${settings.name}"),
-              ),
-            );
-          },
+          builder: (context) => Scaffold(
+            body: Center(child: Text("No route defined for ${settings.name}")),
+          ),
         );
     }
   }

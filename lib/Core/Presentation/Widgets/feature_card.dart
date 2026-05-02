@@ -70,21 +70,26 @@ class FeatureCard extends StatelessWidget {
                   ),
                 ),
                 link
-                    ? Row(
-                        children: [
-                          const SizedBox(width: 10),
-                          Text(
-                            linkText ?? '',
-                            style: TextStyle(
-                              fontSize: 16,
+                    ? Flexible(
+                        child: Row(
+                          children: [
+                            const SizedBox(width: 10),
+                            Flexible(
+                              child: Text(
+                                linkText ?? '',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.primaryColor,
+                                ),
+                              ),
+                            ),
+                            const Icon(
+                              Icons.arrow_right,
                               color: AppColors.primaryColor,
                             ),
-                          ),
-                          const Icon(
-                            Icons.arrow_right,
-                            color: AppColors.primaryColor,
-                          ),
-                        ],
+                          ],
+                        ),
                       )
                     : const SizedBox(),
               ],

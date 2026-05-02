@@ -13,7 +13,6 @@ class AuthHeader extends StatelessWidget {
     this.subtitleColor,
     this.fontSize,
     this.logo,
-
   });
   final String title;
   final String subtitle;
@@ -34,22 +33,30 @@ class AuthHeader extends StatelessWidget {
         children: [
           Image.asset(Assets.imagesAppLogo, width: 85, height: 85),
           SizedBox(height: 40),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: titleColor,
+          Flexible(
+            child: Text(
+              title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: titleColor,
+              ),
             ),
           ),
           SizedBox(height: 5),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: fontSize,
-              fontWeight: font,
-              color: subtitleColor ?? AppColors.textPrimaryColor,
+          Flexible(
+            child: Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: fontSize,
+                fontWeight: font,
+                color: subtitleColor ?? AppColors.textPrimaryColor,
+              ),
             ),
           ),
         ],

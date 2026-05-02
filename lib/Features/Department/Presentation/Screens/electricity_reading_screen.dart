@@ -47,40 +47,47 @@ class ElectricityReadingScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // 2. KPI Cards (Variance & Projected Shift)
-            Row(
-              children: [
-                Expanded(
-                  child: buildCompactKpiCard(
-                    value: AppStrings.varianceLabel ,
-                    label: '+1.2%',
-                    color: AppColors.primaryColor,
-                    border: Border.all(color: Colors.white, width: 1.5),
+            // FIX: Wrap with SingleChildScrollView to prevent overflow on narrow screens
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 150, // Fixed width to prevent overflow
+                    child: buildCompactKpiCard(
+                      value: AppStrings.varianceLabel,
+                      label: '+1.2%',
+                      color: AppColors.primaryColor,
+                      border: Border.all(color: Colors.white, width: 1.5),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: buildCompactKpiCard(
-                    value: AppStrings.projectedTotal,
-                    label: '1600',
-                    color: AppColors.onBoardingBlue2,
-                    border: Border.all(color: Colors.white, width: 1.5),
+                  const SizedBox(width: 12),
+                  SizedBox(
+                    width: 150, // Fixed width to prevent overflow
+                    child: buildCompactKpiCard(
+                      value: AppStrings.projectedTotal,
+                      label: '1600',
+                      color: AppColors.onBoardingBlue2,
+                      border: Border.all(color: Colors.white, width: 1.5),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             const SizedBox(height: 50),
 
             _buildSectionHeader(AppStrings.last3Readings),
             const SizedBox(height: 20),
 
-
-            ..._lastReadings.map((reading) => Padding(
-              padding: const EdgeInsets.only(bottom: 15),
-              child: _buildReadingItem(
-                time: reading['time']!,
-                value: reading['value']!,
+            ..._lastReadings.map(
+              (reading) => Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: _buildReadingItem(
+                  time: reading['time']!,
+                  value: reading['value']!,
+                ),
               ),
-            )),
+            ),
 
             const SizedBox(height: 15),
 
@@ -96,9 +103,7 @@ class ElectricityReadingScreen extends StatelessWidget {
         ),
       ),
       // 3. Bottom Nav
-      bottomNavigationBar: const SharedBottomNav(
-        currentIndex: 1,
-      ),
+      bottomNavigationBar: const SharedBottomNav(currentIndex: 1),
     );
   }
 
@@ -131,17 +136,29 @@ class ElectricityReadingScreen extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              Image.asset(Assets.imagesClock2, width: 20, height: 20, color: Colors.white),
+              Image.asset(
+                Assets.imagesClock2,
+                width: 20,
+                height: 20,
+                color: Colors.white,
+              ),
               const SizedBox(width: 8),
               Text(
                 cumulativeValue,
-                style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(width: 5),
               Expanded(
                 child: Text(
                   time,
-                  style: TextStyle(color: AppColors.miniTitleColor, fontSize: 18.5),
+                  style: TextStyle(
+                    color: AppColors.miniTitleColor,
+                    fontSize: 18.5,
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -158,11 +175,18 @@ class ElectricityReadingScreen extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(color: AppColors.textPrimaryColor, fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            color: AppColors.textPrimaryColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         TextButton(
           onPressed: () {},
-          child: const Text(AppStrings.viewAll, style: TextStyle(color: AppColors.primaryColor)),
+          child: const Text(
+            AppStrings.viewAll,
+            style: TextStyle(color: AppColors.primaryColor),
+          ),
         ),
       ],
     );
@@ -186,8 +210,21 @@ class ElectricityReadingScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(time, style: const TextStyle(color: AppColors.textSubTitleColor, fontSize: 15)),
-          Text(value, style: const TextStyle(color: AppColors.textPrimaryColor, fontSize: 19, fontWeight: FontWeight.w800)),
+          Text(
+            time,
+            style: const TextStyle(
+              color: AppColors.textSubTitleColor,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              color: AppColors.textPrimaryColor,
+              fontSize: 19,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
         ],
       ),
     );
@@ -202,7 +239,11 @@ class ElectricityReadingScreen extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 4)),
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
           ],
         ),
         child: ElevatedButton(
@@ -216,7 +257,11 @@ class ElectricityReadingScreen extends StatelessWidget {
           ),
           child: const Text(
             AppStrings.saveToShiftLogs,
-            style: TextStyle(color: AppColors.primaryColor, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: AppColors.primaryColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

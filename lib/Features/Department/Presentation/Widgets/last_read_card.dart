@@ -18,12 +18,9 @@ class LastReadCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color:  AppColors.accentBlue,
+        color: AppColors.accentBlue,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white,
-          width: 1.4,
-        ),
+        border: Border.all(color: Colors.white, width: 1.4),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha(50),
@@ -31,14 +28,14 @@ class LastReadCard extends StatelessWidget {
             blurRadius: 5,
             offset: const Offset(0, 3),
           ),
-        ]
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(
+          Text(
             AppStrings.detailsOfLastRead,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -48,18 +45,16 @@ class LastReadCard extends StatelessWidget {
           const SizedBox(height: 16),
           Row(
             children: [
+              // ✅ private widget بدل helper method
               Expanded(
-                child: _buildInfoBox(
+                child: _InfoBox(
                   label: AppStrings.cumulativeNumber,
                   value: cumulativeValue,
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: _buildInfoBox(
-                  label: AppStrings.timeLabel,
-                  value: time,
-                ),
+                child: _InfoBox(label: AppStrings.timeLabel, value: time),
               ),
             ],
           ),
@@ -67,17 +62,23 @@ class LastReadCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildInfoBox({required String label, required String value}) {
+// ✅ private widget في نفس الفايل
+class _InfoBox extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _InfoBox({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
       decoration: BoxDecoration(
-         color: AppColors.accentBlue,
+        color: AppColors.accentBlue,
         borderRadius: BorderRadius.circular(6),
-         border: Border.all(
-          color: Colors.white,
-          width: 1.4,
-        ),
+        border: Border.all(color: Colors.white, width: 1.4),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +86,7 @@ class LastReadCard extends StatelessWidget {
         children: [
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 13,
               fontWeight: FontWeight.w500,

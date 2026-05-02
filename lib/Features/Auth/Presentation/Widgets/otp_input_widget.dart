@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-import 'package:power_guard/Core/Constants/app_colors.dart'; // تأكدي من مسار ألوانك
+import 'package:power_guard/Core/Constants/app_colors.dart';
 
 class OtpInputWidget extends StatelessWidget {
   const OtpInputWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // FIX: Make PIN input sizes responsive based on screen width
+    final screenWidth = MediaQuery.of(context).size.width;
+    final pinWidth =
+        (screenWidth - 80) / 4; // Divide available width by 4 digits
+    final clampedWidth = pinWidth.clamp(40.0, 56.0).toDouble();
+    final clampedHeight = clampedWidth;
+
     final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
-      textStyle: const TextStyle(
-        fontSize: 22,
+      width: clampedWidth,
+      height: clampedHeight,
+      textStyle: TextStyle(
+        fontSize: clampedWidth * 0.4,
         color: AppColors.textPrimaryColor,
         fontWeight: FontWeight.w600,
       ),
@@ -35,7 +42,6 @@ class OtpInputWidget extends StatelessWidget {
 
       onCompleted: (pin) {
         debugPrint('OTP: $pin');
-        // context.read<AuthCubit>().verifyOtp(pin);
       },
     );
   }

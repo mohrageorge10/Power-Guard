@@ -56,25 +56,23 @@ class KpiCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     if (iconAsset != null && iconAsset!.isNotEmpty)
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(
-                            iconAsset!,
-                            fit: BoxFit.cover,
+                    if (iconAsset != null && iconAsset!.isNotEmpty)
+                      Flexible(
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(iconAsset!, fit: BoxFit.cover),
                           ),
                         ),
                       )
                     else if (iconAsset == "")
                       const SizedBox(height: 43),
-                      const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
                     if (trailing != null) Flexible(child: trailing!),
                   ],
@@ -103,7 +101,9 @@ class KpiCard extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white.withAlpha(220),
                           fontSize: labelFontSize ?? 13,
-                          fontWeight: value == null ? FontWeight.bold : FontWeight.normal,
+                          fontWeight: value == null
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                     ],
@@ -117,7 +117,7 @@ class KpiCard extends StatelessWidget {
     );
   }
 
-   static Widget buildKpiRow({
+  static Widget buildKpiRow({
     String? value1,
     required String label1,
     String? icon1,
@@ -136,50 +136,56 @@ class KpiCard extends StatelessWidget {
     Border? border2,
     double? height,
   }) {
-    return Row(
-      children: [
-        Expanded(
-          child: KpiCard(
-            value: value1,
-            label: label1,
-            iconAsset: icon1,
-            trailing: trailing1,
-            backgroundColor: color1,
-            border: border1,
-            height: height,
-            valueFontSize: valueFontSize1,
-            labelFontSize: labelFontSize1,
+    // FIX: Wrap in SingleChildScrollView with horizontal scroll to prevent overflow
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          SizedBox(
+            width: 160, // Fixed width to prevent overflow
+            child: KpiCard(
+              value: value1,
+              label: label1,
+              iconAsset: icon1,
+              trailing: trailing1,
+              backgroundColor: color1,
+              border: border1,
+              height: height,
+              valueFontSize: valueFontSize1,
+              labelFontSize: labelFontSize1,
+            ),
           ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: KpiCard(
-            value: value2,
-            label: label2,
-            iconAsset: icon2,
-            trailing: trailing2,
-            backgroundColor: color2,
-            border: border2,
-            height: height,
-            valueFontSize: valueFontSize2,
-            labelFontSize: labelFontSize2,
+          const SizedBox(width: 12),
+          SizedBox(
+            width: 160, // Fixed width to prevent overflow
+            child: KpiCard(
+              value: value2,
+              label: label2,
+              iconAsset: icon2,
+              trailing: trailing2,
+              backgroundColor: color2,
+              border: border2,
+              height: height,
+              valueFontSize: valueFontSize2,
+              labelFontSize: labelFontSize2,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
 Widget buildKpiBadge(String text, {Color? textColor}) {
   return Container(
-     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
 
     decoration: BoxDecoration(
-       color: AppColors.lightBg,
+      color: AppColors.lightBg,
       borderRadius: BorderRadius.circular(8.5),
       border: Border.all(color: Colors.white, width: 1),
 
-       boxShadow: [
+      boxShadow: [
         BoxShadow(
           color: Colors.black.withAlpha(50),
           blurRadius: 4,
@@ -198,7 +204,7 @@ Widget buildKpiBadge(String text, {Color? textColor}) {
   );
 }
 
- Widget buildCompactKpiCard({
+Widget buildCompactKpiCard({
   required String value,
   required String label,
   Color? color,
@@ -223,7 +229,7 @@ Widget buildKpiBadge(String text, {Color? textColor}) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         const SizedBox(height: 15),
+        const SizedBox(height: 15),
         Text(
           value,
           maxLines: 1,
@@ -238,10 +244,7 @@ Widget buildKpiBadge(String text, {Color? textColor}) {
           label,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-          ),
+          style: TextStyle(color: Colors.white, fontSize: 14),
         ),
       ],
     ),
