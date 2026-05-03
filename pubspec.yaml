@@ -38,6 +38,8 @@ dependencies:
   # noinspection YAMLSchemaValidation
   bloc: ^9.1.1
   pinput: ^6.0.2
+  dio: ^5.9.2
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
