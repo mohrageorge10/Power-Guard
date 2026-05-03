@@ -7,10 +7,20 @@ import 'package:power_guard/Core/Presentation/Widgets/feature_card.dart';
 import 'package:power_guard/Core/Presentation/Widgets/welcome_screen_custom_button.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
 import 'package:power_guard/Core/Widgets/auth_header.dart';
+<<<<<<< HEAD
+=======
+import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_form_button.dart';
+
+>>>>>>> api
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
+<<<<<<< HEAD
+=======
+  void Function()? get _submit => null;
+
+>>>>>>> api
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
 
+<<<<<<< HEAD
                   // Get Started
                   const SizedBox(height: 43),
                   WelcomeScreenCustomButton(
@@ -49,6 +60,8 @@ class WelcomeScreen extends StatelessWidget {
                     txtColor: Colors.white,
                     text: AppStrings.getStarted,
                   ),
+=======
+>>>>>>> api
 
                   const SizedBox(height: 43),
 
@@ -107,8 +120,22 @@ class WelcomeScreen extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 43),
+<<<<<<< HEAD
                 ],
               ),
+=======
+
+                  //  CustomFormButton
+                  CustomFormButton(
+                    innerText: 'Get Started',
+                    onPressed: _submit,
+                    height: 48,
+                  ),
+                  const SizedBox(height: 100),
+                ],
+              ),
+
+>>>>>>> api
             ),
           ),
         ),
