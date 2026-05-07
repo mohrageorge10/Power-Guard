@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
 
 class AuthQuestion extends StatelessWidget {
-<<<<<<< HEAD
-  const AuthQuestion({super.key, required this.question, required this.action, required this.onTap});
-=======
   const AuthQuestion({
     super.key,
     required this.question,
     required this.action,
     required this.onTap,
   });
->>>>>>> api
   final String question;
   final String action;
   final VoidCallback onTap;
@@ -19,13 +15,8 @@ class AuthQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-<<<<<<< HEAD
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-=======
       child: Wrap(
         alignment: WrapAlignment.center,
->>>>>>> api
         children: [
           Text(
             question,

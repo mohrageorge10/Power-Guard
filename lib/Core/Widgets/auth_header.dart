@@ -11,13 +11,9 @@ class AuthHeader extends StatelessWidget {
     this.fontWeight,
     this.height,
     this.subtitleColor,
-<<<<<<< HEAD
-    this.fontSize = 20,
-=======
     this.fontSize,
     this.logo,
 
->>>>>>> api
   });
   final String title;
   final String subtitle;
@@ -26,11 +22,8 @@ class AuthHeader extends StatelessWidget {
   final FontWeight? fontWeight;
   final double? fontSize;
   final double? height;
-<<<<<<< HEAD
-=======
   final String? logo;
 
->>>>>>> api
   @override
   Widget build(BuildContext context) {
     final Color titleColor = textColor ?? AppColors.textPrimaryColor;
@@ -40,11 +33,7 @@ class AuthHeader extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(Assets.imagesAppLogo, width: 85, height: 85),
-<<<<<<< HEAD
-          SizedBox(height: 38),
-=======
           SizedBox(height: 40),
->>>>>>> api
           Text(
             title,
             style: TextStyle(
@@ -53,11 +42,7 @@ class AuthHeader extends StatelessWidget {
               color: titleColor,
             ),
           ),
-<<<<<<< HEAD
-          SizedBox(height: h),
-=======
           SizedBox(height: 5),
->>>>>>> api
           Text(
             subtitle,
             textAlign: TextAlign.center,

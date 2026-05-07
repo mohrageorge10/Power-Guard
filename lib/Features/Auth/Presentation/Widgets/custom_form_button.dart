@@ -4,23 +4,17 @@ import 'package:power_guard/Core/Constants/app_colors.dart';
 class CustomFormButton extends StatelessWidget {
   final String innerText;
   final void Function()? onPressed;
-<<<<<<< HEAD
-=======
   final double ?width;
   final double ?height;
   final TextAlign? textAlign;
 
->>>>>>> api
   const CustomFormButton({
     super.key,
     required this.innerText,
     required this.onPressed,
-<<<<<<< HEAD
-=======
     this.width,
     this.height ,
     this.textAlign
->>>>>>> api
   });
 
   @override

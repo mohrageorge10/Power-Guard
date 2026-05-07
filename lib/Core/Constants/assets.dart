@@ -1,11 +1,8 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-<<<<<<< HEAD
   
-=======
 
->>>>>>> api
   /// Assets for imagesAppLogo
   /// assets/images/app_logo.png
   static const String imagesAppLogo = "assets/images/app_logo.png";
@@ -16,11 +13,7 @@ class Assets {
 
   /// Assets for imagesClock
   /// assets/images/clock.png
-<<<<<<< HEAD
-  static const String imagesClock = "assets/images/clock.png";
-=======
   static const String imagesClock = "assets/images/Clock.png";
->>>>>>> api
 
   /// Assets for imagesDepLead
   /// assets/images/dep_lead.png
@@ -41,10 +34,6 @@ class Assets {
   /// Assets for imagesPredict
   /// assets/images/predict.png
   static const String imagesPredict = "assets/images/predict.png";
-<<<<<<< HEAD
-}
-
-=======
 
   // Onboarding
   /// Assets for imagesEllipse5
@@ -290,4 +279,3 @@ static const String imagesLocation = "assets/images/Location.png";
 /// assets/images/description.png
 static const String imagesDescription = "assets/images/Description.png";
 }
->>>>>>> api

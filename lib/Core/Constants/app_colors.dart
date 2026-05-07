@@ -14,10 +14,6 @@ class AppColors {
   static const Color strokeColor = Color(0xFFE6E8EA);
   static const Color successColor = Color(0XFF4BB543);
   static const Color errorColor = Color(0XFFF44336);
-<<<<<<< HEAD
-  // ---- Dark Theme ----
-}
-=======
   static const Color miniTitleColor = Color(0XFF959292);
   static const Color darkGreyColor = Color(0XFF1C1C1C);
   static const Color lightWhiteColor = Color(0XFFFFDAD6);
@@ -84,6 +80,4 @@ class AppColors {
   static const Color distributionRed = Color(0xFFFF0000);
   static const Color red = Color(0xFFFF1B00);
 
-// ---- Dark Theme ----
 }
->>>>>>> api

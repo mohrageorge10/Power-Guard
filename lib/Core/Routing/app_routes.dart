@@ -1,14 +1,4 @@
 class AppRoutes {
-<<<<<<< HEAD
-  static const String welcomeScreen = 'welcome';
-  static const String loginScreen = 'login';
-  static const String signupScreen = 'signup';
-  static const String roleScreen = 'role';
-  static const String forgotPasswordScreen = 'forgot_password';
-  static const String otpScreen = 'otp';
-  static const String homeScreen = 'home';
-}
-=======
   static const String debugMenu = '/';
   static const String onboardingScreen = 'onboarding';
   static const String welcomeScreen = 'welcome';
@@ -32,4 +22,3 @@ class AppRoutes {
   static const String emergencyAlertScreen = 'emergency_alert';
 
 }
->>>>>>> api

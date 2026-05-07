@@ -62,9 +62,6 @@ class AppStrings {
   static String emailExample = '@gmail.com';
   static String confirm = 'Confirm';
   static String enterOtp = 'Enter the OTP';
-<<<<<<< HEAD
-}
-=======
 
   // ---- Onboarding Screen 1 ---
   static const String onboardingTitle1 = 'Smart \nDefense for\nyour Energy';
@@ -244,4 +241,3 @@ class AppStrings {
   static const String assignDes = "Thank you! Your factory data has \nbeen successfully submitted. The \nsystem administrator will review \nand approve the request as soon \nas possible.";
 
 }
->>>>>>> api
