@@ -1,10 +1,15 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:power_guard/Core/Networking/API/dio_consumer.dart';
 import 'package:power_guard/Core/Presentation/debug_menu_screen.dart';
 import 'package:power_guard/Core/Presentation/welcome_screen.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_factories_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_home_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_inbox_screen.dart';
+import 'package:power_guard/Features/Auth/Data/Repo/auth_repository.dart';
+import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/forgot_password_screen.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/login_screen.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/otp_screen.dart';
@@ -35,16 +40,38 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const WelcomeScreen());
 
       case AppRoutes.loginScreen:
-        return MaterialPageRoute(builder: (context) => const LoginScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
+            child: const LoginScreen(),
+          ),
+        );
       case AppRoutes.signupScreen:
-        return MaterialPageRoute(builder: (context) => const SignUpScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
+            child: const SignUpScreen(),
+          ),
+        );
       case AppRoutes.forgotPasswordScreen:
         return MaterialPageRoute(
-          builder: (context) => const ForgotPasswordScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
+            child: const ForgotPasswordScreen(),
+          ),
         );
 
       case AppRoutes.otpScreen:
-        return MaterialPageRoute(builder: (context) => const OTPScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
+            child: const OTPScreen(),
+          ),
+        );
 
       case AppRoutes.registerFactoryScreen:
         return MaterialPageRoute(

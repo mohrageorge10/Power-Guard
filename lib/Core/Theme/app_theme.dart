@@ -14,23 +14,47 @@ class AppTheme {
       surfaceTintColor: Colors.transparent,
     ),
 
-    // inputDecorationTheme: InputDecorationTheme(
-    //   filled: true,
-    //   fillColor: Colors.white,
-    //   border: OutlineInputBorder(
-    //     borderRadius: BorderRadius.circular(12),
-    //     borderSide: BorderSide.none,
-    //   ),
+    // ================= TextField =================
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.primary100Color, 
+      
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      
+      hintStyle: const TextStyle(
+        color: AppColors.textSubTitleColor,
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+      ),
+      
+      errorStyle: const TextStyle(
+        color: AppColors.errorColor,
+      ),
 
-    //   enabledBorder: OutlineInputBorder(
-    //     borderRadius: BorderRadius.circular(12),
-    //     borderSide: BorderSide.none,
-    //   ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: const BorderSide(width: 2, color: Colors.white),
+      ),
 
-    //   focusedBorder: OutlineInputBorder(
-    //     borderRadius: BorderRadius.circular(12),
-    //     borderSide: const BorderSide(color: AppColors.primaryColor, width: 1),
-    //   ),
-    // ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: const BorderSide(width: 2, color: Colors.white),
+      ),
+
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: const BorderSide(width: 2, color: Colors.white), 
+      ),
+
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: const BorderSide(width: 2, color: AppColors.errorColor),
+      ),
+
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: const BorderSide(width: 2, color: AppColors.errorColor),
+      ),
+    ),
   );
 }
