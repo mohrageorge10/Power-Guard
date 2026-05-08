@@ -3,6 +3,26 @@ class AppStrings {
   static String appName = 'Power Guard';
   static String required = 'required!';
 
+  // Login Messages
+  static const String loginSuccess = "Logged in successfully!";
+  
+  // Register Messages
+  static const String registerSuccess = "Account created successfully!";
+  static const String registerFailed = "Registration failed, please try again.";
+  
+  // Password Recovery Messages
+  static const String otpSent = "OTP code has been sent to your email.";
+  static const String otpVerified = "OTP verified successfully.";
+  static const String passwordResetSuccess = "Password has been changed successfully.";
+  
+  // Common Errors
+  static const String fieldRequired = "This field is required";
+  static const String somethingWentWrong = "Something went wrong, please try again later.";
+  static const String noInternet = "Please check your internet connection.";
+  
+  // Logout
+  static const String logoutSuccess = "Logged out successfully!";
+
   // ---- Welcome Screen ----
   static String welcomeSubTitle1 = 'Smart Defense Against \n Energy Waste';
   static String welcomeSubTitle2 =
