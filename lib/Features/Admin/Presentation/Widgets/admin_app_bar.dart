@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Constants/assets.dart';
+import 'package:power_guard/Core/Widgets/alert_widget.dart';
 
 class AdminAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AdminAppBar({super.key});
@@ -49,23 +50,7 @@ class AdminAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 20, top: 50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(Assets.imagesFluentAlert, height: 22.5, width: 22.5),
-              const Text(
-                'Alerts',
-                style: TextStyle(
-                  color: AppColors.warningOrange,
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
+        AlertWidget(),
       ],
     );
   }

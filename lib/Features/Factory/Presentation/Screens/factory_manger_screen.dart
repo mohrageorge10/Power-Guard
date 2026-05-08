@@ -7,8 +7,8 @@ import 'package:power_guard/Core/Presentation/Widgets/shared_app_bar.dart';
 import 'package:power_guard/Core/Presentation/Widgets/shared_bottom_nav.dart';
 import 'package:power_guard/Core/Presentation/Widgets/alert_card_widget.dart';
 import 'package:power_guard/Core/Presentation/Widgets/consumption_graph_card.dart';
-import 'package:power_guard/Core/Presentation/Widgets/Custom_header.dart';
-import 'package:power_guard/Features/Factory/Presentation/Widgets/efficiency_by_Dept.dart';
+import 'package:power_guard/Core/Presentation/Widgets/custom_header.dart';
+import 'package:power_guard/Features/Factory/Presentation/Widgets/efficiency_by_dept.dart';
 import 'package:power_guard/Features/Factory/Presentation/Widgets/distribution_of_sections.dart';
 import 'package:power_guard/Features/Factory/Presentation/Widgets/set_department_limits.dart';
 import 'package:power_guard/Features/Factory/Presentation/Widgets/factory_status.dart';
@@ -204,7 +204,7 @@ class _FactoryManagerScreenState extends State<FactoryManagerScreen> {
          customItems: [
            CustomNavItem(assetPath: Assets.imagesHome, label: AppStrings.homeBtn),
            CustomNavItem(assetPath: Assets.imagesFactories, label: AppStrings.factoriesBtn),
-           CustomNavItem(assetPath: Assets.imagesAlert, label: AppStrings.alertsLabel),
+           CustomNavItem(assetPath: Assets.imagesAlert, label: AppStrings.alert),
            CustomNavItem(assetPath: Assets.imagesProfile, label: AppStrings.profileBtn),
           ],
        )

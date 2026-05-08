@@ -7,13 +7,9 @@ import 'package:power_guard/Core/Presentation/Widgets/feature_card.dart';
 import 'package:power_guard/Core/Presentation/Widgets/welcome_screen_custom_button.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
 import 'package:power_guard/Core/Widgets/auth_header.dart';
-import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_form_button.dart';
-
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
-
-  void Function()? get _submit => null;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +41,15 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
 
+                  const SizedBox(height: 43),
 
+                  //  CustomFormButton
+                  WelcomeScreenCustomButton(
+                    routeName: AppRoutes.signupScreen,
+                    bgColor: AppColors.primaryColor,
+                    txtColor: Colors.white,
+                    text: AppStrings.getStarted,
+                  ),
                   const SizedBox(height: 43),
 
                   // Log In
@@ -103,17 +107,8 @@ class WelcomeScreen extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 43),
-
-                  //  CustomFormButton
-                  CustomFormButton(
-                    innerText: 'Get Started',
-                    onPressed: _submit,
-                    height: 48,
-                  ),
-                  const SizedBox(height: 100),
                 ],
               ),
-
             ),
           ),
         ),

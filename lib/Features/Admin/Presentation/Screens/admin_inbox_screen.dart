@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
-import 'package:power_guard/Core/Constants/assets.dart';
-import '../Widgets/admin_app_bar.dart';
-import '../Widgets/admin_bottom_nav.dart';
-import '../Widgets/inbox_item_card.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/admin_app_bar.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/inbox_header.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/inbox_item_card.dart';
 
 class AdminInboxScreen extends StatelessWidget {
   const AdminInboxScreen({super.key});
@@ -17,7 +16,7 @@ class AdminInboxScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         children: [
-          _buildInboxHeader(),
+          InboxHeader(),
           const SizedBox(height: 12),
           InboxItemCard(
             senderName: AppStrings.sender1,
@@ -33,24 +32,6 @@ class AdminInboxScreen extends StatelessWidget {
           const SizedBox(height: 100),
         ],
       ),
-      bottomNavigationBar: const AdminBottomNav(currentIndex: 2),
-    );
-  }
-
-  Widget _buildInboxHeader() {
-    return Row(
-      children: [
-        Image.asset(Assets.imagesInbox, height: 22, width: 22),
-        const SizedBox(width: 10),
-        Text(
-          AppStrings.inboxCount,
-          style: const TextStyle(
-            color: AppColors.primaryColor,
-            fontSize: 25,
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-      ],
     );
   }
 }

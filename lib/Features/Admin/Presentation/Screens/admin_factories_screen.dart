@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
-import 'package:power_guard/Core/Constants/assets.dart';
-import '../Widgets/admin_app_bar.dart';
-import '../Widgets/admin_bottom_nav.dart';
-import '../Widgets/factory_item_card.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/admin_app_bar.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/factories_list.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/float_action_btn.dart';
 
 class AdminFactoriesScreen extends StatefulWidget {
   const AdminFactoriesScreen({super.key});
@@ -24,34 +23,9 @@ class _AdminFactoriesScreenState extends State<AdminFactoriesScreen> {
       body: Column(
         children: [
           // Search Bar
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search factories by name or ID...',
-                hintStyle: const TextStyle(
-                  color: AppColors.slateGrey,
-                  fontSize: 15,
-                ),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: AppColors.slateGrey,
-                  size: 20,
-                ),
-                filled: true,
-                fillColor: AppColors.primary100Color,
-                contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-          ),
+          SearchBar(),
+
+          const SizedBox(height: 20),
 
           // Filter Chips
           SizedBox(
@@ -125,74 +99,10 @@ class _AdminFactoriesScreenState extends State<AdminFactoriesScreen> {
           const SizedBox(height: 20),
 
           // Factories List
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: [
-                FactoryListCard(
-                  name: 'EcoPack Logistics',
-                  factoryId: 'FAC-88231',
-                  location: 'Berlin, DE',
-                  imagePath: Assets.imagesEcoPack,
-                  status: FactoryStatus.active,
-                  onPrimaryAction: () {},
-                  onRemove: () {},
-                ),
-                FactoryListCard(
-                  name: 'Global Manufacturing...',
-                  factoryId: 'FAC-00536',
-                  location: 'Shenzhen, CN',
-                  imagePath: Assets.imagesGlobal,
-                  status: FactoryStatus.active,
-                  onPrimaryAction: () {},
-                  onRemove: () {},
-                ),
-                FactoryListCard(
-                  name: 'Steel Works Inter...',
-                  factoryId: 'FAC-11042',
-                  location: 'Detroit, USA',
-                  imagePath: Assets.imagesSteel,
-                  status: FactoryStatus.suspended,
-                  onPrimaryAction: () {},
-                  onRemove: () {},
-                ),
-                FactoryListCard(
-                  name: 'Alpha Textiles Ltd',
-                  factoryId: 'FAC-00321',
-                  location: 'Dhaka, BD',
-                  imagePath: Assets.imagesAlpha,
-                  status: FactoryStatus.rejected,
-                  onPrimaryAction: () {},
-                  onRemove: () {},
-                ),
-                const SizedBox(height: 100),
-              ],
-            ),
-          ),
+          FactoriesList(),
         ],
       ),
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primaryColor.withValues(alpha: 0.4),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: AppColors.primaryColor,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: const Icon(Icons.add, color: Colors.white, size: 28),
-        ),
-      ),
-      bottomNavigationBar: const AdminBottomNav(currentIndex: 1),
+      floatingActionButton: FloatActionBtn(),
     );
   }
 }

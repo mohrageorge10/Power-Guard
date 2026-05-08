@@ -8,6 +8,7 @@ class DebugMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final routes = [
       {'name': 'Onboarding Screen', 'route': AppRoutes.onboardingScreen},
+      {'name': 'Admin Main Screen', 'route': AppRoutes.adminMainScreen},
       {'name': 'Welcome Screen', 'route': AppRoutes.welcomeScreen},
        {'name': 'Login Screen', 'route': AppRoutes.loginScreen},
       {'name': 'Signup Screen', 'route': AppRoutes.signupScreen},

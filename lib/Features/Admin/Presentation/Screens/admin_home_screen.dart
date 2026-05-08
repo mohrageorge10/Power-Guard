@@ -3,9 +3,11 @@ import 'package:power_guard/Core/Constants/app_colors.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Constants/assets.dart';
 import 'package:power_guard/Core/Presentation/Widgets/kpi_card.dart';
-import '../Widgets/admin_app_bar.dart';
-import '../Widgets/admin_bottom_nav.dart';
-import '../Widgets/inbox_item_card.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/admin_app_bar.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/inbox_item_card.dart';
+import 'package:power_guard/Features/Admin/Presentation/Widgets/overview_header.dart';
+import 'package:power_guard/Features/Department/Presentation/Widgets/badge.dart';
+
 
 class AdminHomeScreen extends StatelessWidget {
   const AdminHomeScreen({super.key});
@@ -22,7 +24,7 @@ class AdminHomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 8),
-            _buildOverviewHeader(),
+            OverviewHeader(),
             const SizedBox(height: 20),
             Row(
               children: [
@@ -39,7 +41,7 @@ class AdminHomeScreen extends StatelessWidget {
                     value: '4',
                     label: AppStrings.totalFactories,
                     iconAsset: Assets.imagesTotalFac,
-                     trailing: _buildBadge(AppStrings.newThisWeek),
+                     trailing: BuildBadge(text:AppStrings.newThisWeek),
                   ),
                 ),
               ],
@@ -50,7 +52,7 @@ class AdminHomeScreen extends StatelessWidget {
               label: AppStrings.pendingRequests,
               backgroundColor: AppColors.onBoardingBlue2,
               iconAsset: Assets.imagesPenRequests,
-               trailing: _buildBadge(AppStrings.pendingLabel, isWhite: true),
+               trailing: BuildBadge(isWhite: true, text: AppStrings.pendingLabel),
             ),
             const SizedBox(height: 32),
             _buildInboxHeader(),
@@ -70,60 +72,9 @@ class AdminHomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const AdminBottomNav(currentIndex: 0),
     );
   }
 
-   Widget _buildBadge(String text, {bool isWhite = false}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: AppColors.lightBg,
-        borderRadius: BorderRadius.circular(8),
-      ),
-        child: Text(
-        text,
-        style: TextStyle(
-          color: AppColors.primaryColor,
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  // Widget for the Overview Header
-  Widget _buildOverviewHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          AppStrings.overviewHeader,
-          style: const TextStyle(
-            color: AppColors.primaryColor,
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2.5),
-          decoration: BoxDecoration(
-            color: AppColors.primary100Color,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColors.white, width: 2),
-          ),
-          child: Text(
-            AppStrings.lastUpdated,
-            style: const TextStyle(
-              color: AppColors.primaryColor,
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
   // Widget for the Inbox Header
   Widget _buildInboxHeader() {
