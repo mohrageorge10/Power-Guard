@@ -17,7 +17,7 @@ currentIndex: 2,
 customNavItems: [
 CustomNavItem(assetPath: Assets.imagesHome, label: AppStrings.homeBtn),
 CustomNavItem(assetPath: Assets.imagesFactories, label: AppStrings.factoriesBtn),
-CustomNavItem(assetPath: Assets.imagesAlert, label: AppStrings.alertsLabel),
+CustomNavItem(assetPath: Assets.imagesAlert, label: AppStrings.alert),
 CustomNavItem(assetPath: Assets.imagesProfile, label: AppStrings.profileBtn),
 ],
 );

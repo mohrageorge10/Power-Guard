@@ -8,6 +8,7 @@ import 'package:power_guard/Core/Routing/app_routes.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_factories_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_home_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_inbox_screen.dart';
+import 'package:power_guard/Features/Admin/Presentation/Screens/admin_main_screen.dart';
 import 'package:power_guard/Features/Auth/Data/Repo/auth_repository.dart';
 import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/forgot_password_screen.dart';
@@ -127,6 +128,11 @@ class AppRouter {
       case AppRoutes.factoryEmergencyScreen:
         return MaterialPageRoute(
           builder: (context) => const FactoryEmergencyScreen(),
+        );
+        
+      case AppRoutes.adminMainScreen:
+        return MaterialPageRoute(
+          builder: (context) =>  AdminMainScreen(),
         );
 
       case AppRoutes.deptHomeScreen:

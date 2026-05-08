@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
+import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Constants/assets.dart';
 
 class AdminBottomNav extends StatelessWidget {
   final int currentIndex;
-  const AdminBottomNav({super.key, required this.currentIndex});
+  final Function(int) onTap;
+
+  const AdminBottomNav({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,7 @@ class AdminBottomNav extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 20,
             offset: const Offset(0, -5),
           ),
@@ -35,9 +42,11 @@ class AdminBottomNav extends StatelessWidget {
           unselectedItemColor: AppColors.slateGrey,
           type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
+          onTap: onTap,
           selectedFontSize: 10,
           unselectedFontSize: 10,
           items: [
+            // Home
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.imagesHome,
@@ -47,8 +56,10 @@ class AdminBottomNav extends StatelessWidget {
                 height: 20,
                 width: 20,
               ),
-              label: 'Home',
+              label: AppStrings.homeBtn,
             ),
+
+            // Factories
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.imagesFactories,
@@ -58,8 +69,10 @@ class AdminBottomNav extends StatelessWidget {
                 height: 20,
                 width: 20,
               ),
-              label: 'Factories',
+              label: AppStrings.factoriesBtn,
             ),
+
+            // Inbox
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.imagesInbox,
@@ -69,8 +82,10 @@ class AdminBottomNav extends StatelessWidget {
                 height: 20,
                 width: 20,
               ),
-              label: 'Inbox',
+              label: AppStrings.inboxBtn,
             ),
+
+            // Profile
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.imagesProfile,
@@ -80,7 +95,7 @@ class AdminBottomNav extends StatelessWidget {
                 height: 20,
                 width: 20,
               ),
-              label: 'Profile',
+              label: AppStrings.profileBtn,
             ),
           ],
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),

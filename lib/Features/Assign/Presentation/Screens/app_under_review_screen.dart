@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
 import 'package:power_guard/Core/Constants/assets.dart';
+import 'package:power_guard/Features/Assign/Presentation/Widgets/next_step.dart';
+import 'package:power_guard/Features/Assign/Presentation/Widgets/whats_next_header.dart';
 import '../../../Auth/Presentation/Widgets/custom_form_button.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
 
@@ -92,22 +94,22 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    _WhatsNextHeader(),
+                  children:  [
+                    WhatsNextHeader(),
                     SizedBox(height: 16),
-                    _NextStep(
+                    NextStep(
                       iconPath: Assets.imagesNumber1,
-                      label: 'Factory location',
+                      label: AppStrings.factoryName,
                     ),
                     SizedBox(height: 12),
-                    _NextStep(
+                    NextStep(
                       iconPath: Assets.imagesNumber2,
-                      label: 'Factory description',
+                      label: AppStrings.factoryLocation,
                     ),
                     SizedBox(height: 12),
-                    _NextStep(
+                    NextStep(
                       iconPath: Assets.imagesNumber3,
-                      label: 'Factory description',
+                      label: AppStrings.factoryDescription,
                     ),
                   ],
                 ),
@@ -115,67 +117,14 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
               const SizedBox(height: 40),
 
               CustomFormButton(
-                innerText: 'Edit data',
-                onPressed: () => Navigator.pop(context),
+                innerText: AppStrings.editData,
+                onTap: () => Navigator.pop(context),
                 ),
               const SizedBox(height: 24),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-// ---- Whats Next Header ----
-
-class _WhatsNextHeader extends StatelessWidget {
-  const _WhatsNextHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Image.asset(Assets.imagesSubmitP, width: 20, height: 20),
-        const SizedBox(width: 8),
-        const Text(
-          "What's next?",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 17,
-            color: AppColors.textPrimaryColor,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-       class _NextStep extends StatelessWidget {
-       final String iconPath;
-       final String label;
-
-      const _NextStep({
-      required this.iconPath,
-      required this.label,
-    });
-
-    @override
-    Widget build(BuildContext context) {
-    return Row(
-      children: [
-
-        Image.asset(iconPath, width: 24, height: 24),
-        const SizedBox(width: 10),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textPrimaryColor,
-          ),
-        ),
-      ],
     );
   }
 }

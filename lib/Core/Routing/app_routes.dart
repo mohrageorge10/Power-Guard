@@ -20,5 +20,6 @@ class AppRoutes {
   static const String factoryMangerScreen = 'factory_manger';
   static const String factoryEmergencyScreen = 'factory_emergency';
   static const String emergencyAlertScreen = 'emergency_alert';
+  static const String adminMainScreen = 'admin_main_screen';
 
 }

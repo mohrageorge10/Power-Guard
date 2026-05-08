@@ -2,24 +2,29 @@ class AppStrings {
   // ---- General ----
   static String appName = 'Power Guard';
   static String required = 'required!';
+  static String alert = 'Alerts';
+  static String whatsNext = "What's next?";
+  static String editData = "Edit Data";
 
   // Login Messages
   static const String loginSuccess = "Logged in successfully!";
-  
+
   // Register Messages
   static const String registerSuccess = "Account created successfully!";
   static const String registerFailed = "Registration failed, please try again.";
-  
+
   // Password Recovery Messages
   static const String otpSent = "OTP code has been sent to your email.";
   static const String otpVerified = "OTP verified successfully.";
-  static const String passwordResetSuccess = "Password has been changed successfully.";
-  
+  static const String passwordResetSuccess =
+      "Password has been changed successfully.";
+
   // Common Errors
   static const String fieldRequired = "This field is required";
-  static const String somethingWentWrong = "Something went wrong, please try again later.";
+  static const String somethingWentWrong =
+      "Something went wrong, please try again later.";
   static const String noInternet = "Please check your internet connection.";
-  
+
   // Logout
   static const String logoutSuccess = "Logged out successfully!";
 
@@ -85,19 +90,23 @@ class AppStrings {
 
   // ---- Onboarding Screen 1 ---
   static const String onboardingTitle1 = 'Smart \nDefense for\nyour Energy';
-  static const String onboardingSubTitle1 = 'Real-time monitoring and cost \ncontrol for your factory in one place';
+  static const String onboardingSubTitle1 =
+      'Real-time monitoring and cost \ncontrol for your factory in one place';
 
   // ---- Onboarding Screen 2 ---
   static const String onboardingTitle2 = ' Deep \nAnalysis for\n Departments';
-  static const String onboardingSubTitle2 = 'All expenses by cards are reflected automatically in the application, and the analytics system helps to \ncontrol them';
+  static const String onboardingSubTitle2 =
+      'All expenses by cards are reflected automatically in the application, and the analytics system helps to \ncontrol them';
 
   // ---- Onboarding Screen 3 ----
   static const String onboardingTitle3 = 'AI \nOptimization \nSuggestions';
-  static const String onboardingSubTitle3 = 'Receive smart recommendations to \nreduce waste and optimize \nproduction shifts for better \nefficiency.';
+  static const String onboardingSubTitle3 =
+      'Receive smart recommendations to \nreduce waste and optimize \nproduction shifts for better \nefficiency.';
 
   // ---- Onboarding Screen 4 ----
   static const String onboardingTitle4 = 'Stay Safe with \nSmart Alerts';
-  static const String onboardingSubTitle4 = 'Set maximum consumption limits \nand get instant notifications before \nexceeding your budget.';
+  static const String onboardingSubTitle4 =
+      'Set maximum consumption limits \nand get instant notifications before \nexceeding your budget.';
 
   // ---- Buttons Text ----
   static const String onboardingGetStarted = 'Get Started';
@@ -127,10 +136,9 @@ class AppStrings {
 
   // Dummy Data
   static const String sender1 = "S. HENDERSON";
-  static const String company1 = "ECOPACK LOGISTICS";
+  static const String company1 = "EcoPack LOGISTICS";
   static const String sender2 = "J. KOVIC";
   static const String company2 = "ALPHA TEXTILES LTD";
-
 
   // Tabs / Filters
   static const String tabAll = "all";
@@ -150,9 +158,10 @@ class AppStrings {
 
   // Factory Details (Labels)
   static const String idLabel = "ID:";
-  static const String locationLabel = "Berlin, DE"; // كمثال
+  static const String locationLabel = "Berlin, DE"; 
 
   // Department
+  static const String departmentManager = "Department Manager";
   // Report Issue
   static const String reportIssueTitle = "Report issue";
   static const String targetAssetLabel = "TARGET ASSET";
@@ -171,7 +180,8 @@ class AppStrings {
   static const String loadValue = "95%";
   static const String criticalOverload = "CRITICAL OVERLOAD";
   static const String emergencyStopBtn = "EMERGENCY STOP";
-  static const String emergencyStopSub = "Initiate immediate shutdown sequence for affected system";
+  static const String emergencyStopSub =
+      "Initiate immediate shutdown sequence for affected system";
   static const String muteAlarmBtn = "Mute Alarm";
   static const String contactMaintBtn = "Contact Maint.";
 
@@ -197,13 +207,12 @@ class AppStrings {
   static const String reportIssuesBtn = "Report issues";
   static const String enterEnergyBtn = "Enter energy usage";
 
-
-
   // ---- Factory ----
   // Headers
   static const String appBarTitle = "Factory manager";
-  static const String alertsLabel = "Alerts";
-
+  static const String factoryName = "Factory Name";
+  static const String factoryLocation = "Factory Location";
+  static const String factoryDescription = "Factory Description";
   // Overview Section
   static const String overviewHeader = "Overview";
   static const String lastUpdated = "Last updated 12min ago";
@@ -212,19 +221,23 @@ class AppStrings {
   static const String spendingValue = "4,250.8 KW";
   static const String limitValue = "5,000.0 KW";
   static const String spendingTrend = "+ 25% more than yesterday";
-  static const String spendingTrend2 = " 2.1% less than"
+  static const String spendingTrend2 =
+      " 2.1% less than"
       "\nyesterday";
-
+  static const String submit = 'Submitting a registration application';
+  static const String factoryOverview =  "A brief overview of the factory's products and field of work";
 
   // Status Card
   static const String factoryStatusTitle = "Current factory status";
-  static const String factoryStatusSub = "Based on consumption \n in the last 12 hours";
+  static const String factoryStatusSub =
+      "Based on consumption \n in the last 12 hours";
   static const String statusHighConsumption = "Warning: High consumption";
 
   // Categories & Distribution
   static const String highestCategoryTitle = "Highest consumption category";
   static const String highestCategoryDept = "Smelting department";
-  static const String highestCategoryValue = "It consumes 42% of the \n factory's total output.";
+  static const String highestCategoryValue =
+      "It consumes 42% of the \n factory's total output.";
   static const String distributionTitle = "Distribution of sections";
   static const String totalLabel = "Total";
 
@@ -258,6 +271,6 @@ class AppStrings {
 
   // Assign
   static const String assignTitle = "Your application is under review";
-  static const String assignDes = "Thank you! Your factory data has \nbeen successfully submitted. The \nsystem administrator will review \nand approve the request as soon \nas possible.";
-
+  static const String assignDes =
+      "Thank you! Your factory data has \nbeen successfully submitted. The \nsystem administrator will review \nand approve the request as soon \nas possible.";
 }
