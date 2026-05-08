@@ -11,7 +11,9 @@ class AuthHeader extends StatelessWidget {
     this.fontWeight,
     this.height,
     this.subtitleColor,
-    this.fontSize = 20,
+    this.fontSize,
+    this.logo,
+
   });
   final String title;
   final String subtitle;
@@ -20,31 +22,30 @@ class AuthHeader extends StatelessWidget {
   final FontWeight? fontWeight;
   final double? fontSize;
   final double? height;
+  final String? logo;
+
   @override
   Widget build(BuildContext context) {
-    final Color titleColor = textColor ?? AppColors.textPrimaryColor;
-    final FontWeight font = fontWeight ?? FontWeight.w400;
-    final double h = height ?? 0;
     return Center(
       child: Column(
         children: [
           Image.asset(Assets.imagesAppLogo, width: 85, height: 85),
-          SizedBox(height: 38),
+          SizedBox(height: 40),
           Text(
             title,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: titleColor,
+              color: textColor ?? AppColors.textPrimaryColor,
             ),
           ),
-          SizedBox(height: h),
+          SizedBox(height: 5),
           Text(
             subtitle,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: fontSize,
-              fontWeight: font,
+              fontWeight: fontWeight ?? FontWeight.w400,
               color: subtitleColor ?? AppColors.textPrimaryColor,
             ),
           ),

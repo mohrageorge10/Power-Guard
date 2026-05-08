@@ -3,41 +3,53 @@ import 'package:power_guard/Core/Constants/app_colors.dart';
 
 class CustomFormButton extends StatelessWidget {
   final String innerText;
-  final void Function()? onPressed;
+  final void Function()? onTap;
+  final double? width;
+  final double? height;
+  final String? img;
+
   const CustomFormButton({
     super.key,
     required this.innerText,
-    required this.onPressed,
+    required this.onTap,
+    this.width,
+    this.height,
+    this.img,
   });
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        width: 236,
-        height: 39,
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(26),
-          border: Border.all(color: Colors.white, width: 2),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.5),
-              blurRadius: 5,
-              spreadRadius: 0,
-              offset: const Offset(0, 4),
-            ),
-          ],
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(width ?? double.infinity, height ?? 50),
+          backgroundColor: AppColors.primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(26),
+          ),
+          elevation: 5,
+          shadowColor: Colors.black.withValues(alpha: 0.5),
+          side: const BorderSide(color: Colors.white, width: 2),
         ),
-        child: TextButton(
-          onPressed: onPressed,
-          child: Text(
-            innerText,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (img != null) ...[
+                Image.asset(img!, width: 24, height: 24),
+                const SizedBox(width: 10),
+              ],
+              Text(
+                innerText,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ),

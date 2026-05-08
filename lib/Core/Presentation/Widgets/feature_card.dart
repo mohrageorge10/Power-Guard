@@ -30,7 +30,7 @@ class FeatureCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       height: cardHeight,
-      width: 379,
+      constraints: const BoxConstraints(maxWidth: 379),
       decoration: BoxDecoration(
         color: AppColors.primary50Color,
         borderRadius: BorderRadius.circular(38),
