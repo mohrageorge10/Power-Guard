@@ -33,7 +33,7 @@ class CustomFormButton extends StatelessWidget {
           side: const BorderSide(color: Colors.white, width: 2),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          padding: const EdgeInsets.symmetric(vertical: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

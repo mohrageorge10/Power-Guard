@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
 import 'package:power_guard/Core/Routing/navigation_decider.dart';
+import 'package:power_guard/Core/Utils/app_validators.dart';
 import 'package:power_guard/Core/Utils/functions_helper.dart';
 import 'package:power_guard/Core/Widgets/auth_header.dart';
 import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
 import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_state.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/auth_question.dart';
-import 'package:power_guard/Features/Auth/Presentation/Widgets/back_arrow.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_form_button.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_text_form_field.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/forget_password_widget.dart';
@@ -18,6 +18,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("👀 LoginScreen Scaffold is on the screen!");
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -29,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                   message: AppStrings.loginSuccess,
                   isError: false,
                 );
-                NavigationDecider.navigateBasedOnRole(context);
+                NavigationDecider.navigateBasedOnRole(context, state.role);
               } else if (state is LoginFailure) {
                 FunctionsHelper.showSnackBar(context, message: state.errorMsg);
               }
@@ -42,9 +43,6 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 16),
-                    BackArrow(),
-
                     const SizedBox(height: 20),
 
                     AuthHeader(
@@ -64,6 +62,7 @@ class LoginScreen extends StatelessWidget {
                             hintText: AppStrings.emailExample,
                             labelText: AppStrings.email,
                             controller: cubit.loginEmail,
+                            validator: AppValidators.validateEmail,
                           ),
                           const SizedBox(height: 22),
                           // Password
@@ -73,23 +72,27 @@ class LoginScreen extends StatelessWidget {
                             obscureText: true,
                             suffixIcon: true,
                             controller: cubit.loginPassword,
+                            validator: (value) => AppValidators.validateEmpty(value, AppStrings.password),
                           ),
 
                           const SizedBox(height: 27),
-                          //! Forget password?
-                          Center(child: ForgetPasswordWidget()),
+                          const Center(child: ForgetPasswordWidget()),
                           const SizedBox(height: 22),
+
                           // Login Button
                           state is LoginLoading
-                              ? const CircularProgressIndicator()
+                              ? const Center(child: CircularProgressIndicator())
                               : CustomFormButton(
                                   innerText: AppStrings.login,
                                   onTap: () {
-                                    cubit.login();
+                                    if (cubit.loginFormKey.currentState!
+                                        .validate()) {
+                                      cubit.login();
+                                    }
                                   },
                                 ),
                           const SizedBox(height: 18),
-                          //! Dont Have An Account ?
+
                           AuthQuestion(
                             question: AppStrings.dontHaveAccount,
                             action: AppStrings.registerNow,

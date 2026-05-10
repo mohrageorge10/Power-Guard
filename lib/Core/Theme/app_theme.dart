@@ -14,22 +14,24 @@ class AppTheme {
       surfaceTintColor: Colors.transparent,
     ),
 
+    progressIndicatorTheme:  ProgressIndicatorThemeData(
+      color: AppColors.primaryColor,
+    ),
+
     // ================= TextField =================
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.primary100Color, 
-      
+      fillColor: AppColors.primary100Color,
+
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-      
+
       hintStyle: const TextStyle(
         color: AppColors.textSubTitleColor,
         fontSize: 12,
         fontWeight: FontWeight.w500,
       ),
-      
-      errorStyle: const TextStyle(
-        color: AppColors.errorColor,
-      ),
+
+      errorStyle: const TextStyle(color: AppColors.errorColor),
 
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(25),
@@ -43,7 +45,7 @@ class AppTheme {
 
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(25),
-        borderSide: const BorderSide(width: 2, color: Colors.white), 
+        borderSide: const BorderSide(width: 2, color: Colors.white),
       ),
 
       errorBorder: OutlineInputBorder(

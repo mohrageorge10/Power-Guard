@@ -9,11 +9,12 @@ import 'package:power_guard/Features/Admin/Presentation/Screens/admin_factories_
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_home_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_inbox_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_main_screen.dart';
-import 'package:power_guard/Features/Auth/Data/Repo/auth_repository.dart';
-import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
+import 'package:power_guard/Features/Assign/Data/Repo/assign_repository.dart';
+import 'package:power_guard/Features/Assign/Presentation/cubit/assign_cubit.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/forgot_password_screen.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/login_screen.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/otp_screen.dart';
+import 'package:power_guard/Features/Auth/Presentation/Screens/reset_pass_screen.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/signup_screen.dart';
 import 'package:power_guard/Features/Department/Presentation/Screens/dept_emergency_screen.dart';
 import 'package:power_guard/Features/Department/Presentation/Screens/dept_home_screen.dart';
@@ -41,42 +42,29 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const WelcomeScreen());
 
       case AppRoutes.loginScreen:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
-            child: const LoginScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
       case AppRoutes.signupScreen:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
-            child: const SignUpScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (context) => const SignUpScreen());
       case AppRoutes.forgotPasswordScreen:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
-            child: const ForgotPasswordScreen(),
-          ),
+          builder: (context) => const ForgotPasswordScreen(),
         );
 
       case AppRoutes.otpScreen:
+        return MaterialPageRoute(builder: (context) => const OTPScreen());
+
+      case AppRoutes.resetPasswordScreen:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                AuthCubit(AuthRepository(api: DioConsumer(dio: Dio()))),
-            child: const OTPScreen(),
-          ),
+          builder: (context) => const ResetPasswordScreen(),
         );
 
       case AppRoutes.registerFactoryScreen:
         return MaterialPageRoute(
-          builder: (context) => const RegisterFactoryScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                AssignCubit(AssignRepository(api: DioConsumer(dio: Dio()))),
+            child: const RegisterFactoryScreen(),
+          ),
         );
 
       case AppRoutes.applicationUnderReviewScreen:
@@ -129,11 +117,9 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const FactoryEmergencyScreen(),
         );
-        
+
       case AppRoutes.adminMainScreen:
-        return MaterialPageRoute(
-          builder: (context) =>  AdminMainScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => AdminMainScreen());
 
       case AppRoutes.deptHomeScreen:
         return MaterialPageRoute(builder: (context) => const DeptHomeScreen());

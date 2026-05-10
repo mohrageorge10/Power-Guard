@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
+
 // Adjust the path based on your project structure
-import 'error_model.dart'; 
+import 'error_model.dart';
 
 class ServerException implements Exception {
   final ErrorModel errorModel;
@@ -18,7 +19,7 @@ void handleDioExceptions(DioException e) {
     case DioExceptionType.connectionError:
       throw ServerException(
         errorModel: ErrorModel(
-          status: 0, 
+          status: 0,
           errorMsg: 'Please check your internet connection and try again.',
         ),
       );
@@ -26,23 +27,20 @@ void handleDioExceptions(DioException e) {
     case DioExceptionType.badCertificate:
       throw ServerException(
         errorModel: ErrorModel(
-          status: 0, 
+          status: 0,
           errorMsg: 'Invalid security certificate.',
         ),
       );
 
     case DioExceptionType.cancel:
       throw ServerException(
-        errorModel: ErrorModel(
-          status: 0, 
-          errorMsg: 'Request was cancelled.',
-        ),
+        errorModel: ErrorModel(status: 0, errorMsg: 'Request was cancelled.'),
       );
 
     case DioExceptionType.unknown:
       throw ServerException(
         errorModel: ErrorModel(
-          status: 0, 
+          status: 0,
           errorMsg: 'An unexpected error occurred. Please try again later.',
         ),
       );
@@ -52,12 +50,24 @@ void handleDioExceptions(DioException e) {
     // =========================================================
     case DioExceptionType.badResponse:
       if (e.response != null && e.response!.data != null) {
-        
         // If the response is a valid JSON (Map)
         if (e.response!.data is Map<String, dynamic>) {
-          throw ServerException(errorModel: ErrorModel.fromJson(e.response!.data));
+          throw ServerException(
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
+        }
+        // 👈 The Magic Fix: If the backend sends a plain String (like "Email already exists")
+        else if (e.response!.data is String) {
+          throw ServerException(
+            errorModel: ErrorModel(
+              status: e.response!.statusCode ?? 500,
+              errorMsg: e
+                  .response!
+                  .data.toString(), // We pass the exact string from the server here
+            ),
+          );
         } else {
-          // If the server returns HTML or unexpected format instead of JSON
+          // If the server returns HTML or unexpected format
           throw ServerException(
             errorModel: ErrorModel(
               status: e.response!.statusCode ?? 500,
@@ -65,7 +75,6 @@ void handleDioExceptions(DioException e) {
             ),
           );
         }
-        
       } else {
         // If there is an error but the response body is empty
         throw ServerException(
