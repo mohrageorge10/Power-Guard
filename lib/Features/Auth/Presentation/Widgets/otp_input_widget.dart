@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
-import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
+import 'package:power_guard/Features/Auth/Presentation/cubit/auth_cubit.dart';
 
 class OtpInputWidget extends StatelessWidget {
   const OtpInputWidget({super.key});
@@ -41,7 +41,7 @@ class OtpInputWidget extends StatelessWidget {
       onCompleted: (pin) {
         debugPrint('OTP: $pin');
         // Call verifyOtp without arguments, it will read from the linked controller
-        cubit.verifyOtp(); 
+        cubit.verifyOtp();
       },
     );
   }

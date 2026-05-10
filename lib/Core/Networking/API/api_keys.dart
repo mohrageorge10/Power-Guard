@@ -7,6 +7,7 @@ class ApiKey {
   static const String errorMsg = 'ErrorMessage';
   static const String role = 'role';
   static const String token = 'token';
+  static const String data = 'data';
   static const String expirationDate = 'expirationDate';
   static const String refreshTokenExpiration = 'refreshTokenExpiration';
   static const String isSuccess = 'isSuccess'; 
@@ -33,6 +34,11 @@ class ApiKey {
   static const String reviewFactoryId = 'factoryId';
   static const String reviewIsApproved = 'isApproved';
   static const String reviewAdminRemarks = 'adminRemarks';
+  static const String totalFactories = 'totalFactories';
+  static const String pendingFactories = 'pendingFactories';
+  static const String activeFactories = 'activeFactories';
+  static const String isApproved = 'isApproved';
+  static const String remarks = "adminRemarks";
 
   // ==========================================
   // 4. Department Keys
@@ -47,7 +53,10 @@ class ApiKey {
   // ==========================================
   // 5. Factory Keys
   // ==========================================
-  static const String factoryAddress = 'location';
+  static const String location = 'location';
+  static const String id= 'id';
+  static const String managerName= 'managerName';
+  static const String managerEmail= 'managerEmail';
 
   // ==========================================
   // 6. Consumption Logs & Notifications Keys

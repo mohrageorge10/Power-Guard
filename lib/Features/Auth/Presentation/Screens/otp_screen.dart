@@ -4,12 +4,12 @@ import 'package:power_guard/Core/Constants/app_colors.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Utils/functions_helper.dart';
 import 'package:power_guard/Core/Widgets/auth_header.dart';
-import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
-import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_state.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/reset_pass_screen.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/back_arrow.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_form_button.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/otp_input_widget.dart';
+import 'package:power_guard/Features/Auth/Presentation/cubit/auth_cubit.dart';
+import 'package:power_guard/Features/Auth/Presentation/cubit/auth_state.dart';
 
 class OTPScreen extends StatelessWidget {
   const OTPScreen({super.key});

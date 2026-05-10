@@ -16,7 +16,7 @@ class AssignRepository {
       EndPoint.factory,
       data: {
         ApiKey.name: name,
-        ApiKey.factoryAddress: location,
+        ApiKey.location: location,
         ApiKey.description: description,
         ApiKey.currentConsumptionLimit: 0,
       },

@@ -22,5 +22,6 @@ class AppRoutes {
   static const String emergencyAlertScreen = 'emergency_alert';
   static const String adminMainScreen = 'admin_main_screen';
   static const String resetPasswordScreen = 'reset_password_screen';
+  static const String factoryDetailsScreen = 'factory_details_screen';
 
 }

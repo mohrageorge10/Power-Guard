@@ -5,12 +5,12 @@ import 'package:power_guard/Core/Routing/app_routes.dart';
 import 'package:power_guard/Core/Utils/app_validators.dart';
 import 'package:power_guard/Core/Utils/functions_helper.dart';
 import 'package:power_guard/Core/Widgets/auth_header.dart';
-import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
-import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_state.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/auth_question.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/back_arrow.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_form_button.dart';
 import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_text_form_field.dart';
+import 'package:power_guard/Features/Auth/Presentation/cubit/auth_cubit.dart';
+import 'package:power_guard/Features/Auth/Presentation/cubit/auth_state.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -96,10 +96,11 @@ class SignUpScreen extends StatelessWidget {
                             obscureText: true,
                             suffixIcon: true,
                             controller: cubit.registerConfirmPassword,
-                            validator: (value) => AppValidators.validateConfirmPassword(
-                              value, 
-                              cubit.registerPassword.text,
-                            ),
+                            validator: (value) =>
+                                AppValidators.validateConfirmPassword(
+                                  value,
+                                  cubit.registerPassword.text,
+                                ),
                           ),
                           const SizedBox(height: 22),
                           // Phone

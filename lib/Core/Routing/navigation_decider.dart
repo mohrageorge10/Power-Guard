@@ -10,7 +10,7 @@ class NavigationDecider {
   // Pass the role directly as a parameter
   static void navigateBasedOnRole(BuildContext context, String role) {
     if (role == roleAdmin) {
-      Navigator.pushReplacementNamed(context, AppRoutes.adminHomeScreen); // Make sure this route is correct
+      Navigator.pushReplacementNamed(context, AppRoutes.adminHomeScreen); 
     } else if (role == roleFactoryManager) {
       Navigator.pushReplacementNamed(context, AppRoutes.factoryMangerScreen);
     } else if (role == roleDepartmentManager) {
