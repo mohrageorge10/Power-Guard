@@ -5,10 +5,12 @@ import 'package:power_guard/Core/Networking/API/dio_consumer.dart';
 import 'package:power_guard/Core/Presentation/debug_menu_screen.dart';
 import 'package:power_guard/Core/Presentation/welcome_screen.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
+import 'package:power_guard/Features/Admin/Data/Repo/admin_repository.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_factories_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_home_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_inbox_screen.dart';
 import 'package:power_guard/Features/Admin/Presentation/Screens/admin_main_screen.dart';
+import 'package:power_guard/Features/Admin/Presentation/cubit/admin_cubit.dart';
 import 'package:power_guard/Features/Assign/Data/Repo/assign_repository.dart';
 import 'package:power_guard/Features/Assign/Presentation/cubit/assign_cubit.dart';
 import 'package:power_guard/Features/Auth/Presentation/Screens/forgot_password_screen.dart';
@@ -77,11 +79,22 @@ class AppRouter {
         );
 
       case AppRoutes.adminHomeScreen:
-        return MaterialPageRoute(builder: (context) => const AdminHomeScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                AdminCubit(AdminRepository(api: DioConsumer(dio: Dio())))
+                  ..getDashboardData()
+                  ..getPendingFactories(),
+            child: const AdminHomeScreen(),
+          ),
+        );
 
       case AppRoutes.adminFactoriesScreen:
         return MaterialPageRoute(
-          builder: (context) => const AdminFactoriesScreen(),
+          builder: (context) => BlocProvider.value(
+            value: context.read<AdminCubit>(),
+            child: const AdminFactoriesScreen(),
+          ),
         );
 
       case AppRoutes.adminInboxScreen:
