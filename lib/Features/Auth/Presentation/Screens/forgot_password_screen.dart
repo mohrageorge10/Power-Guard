@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
+import 'package:power_guard/Core/Utils/app_validators.dart';
 import 'package:power_guard/Core/Utils/functions_helper.dart';
 import 'package:power_guard/Core/Widgets/auth_header.dart';
 import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
@@ -20,14 +21,14 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: SafeArea(
         child: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
-            // Success Case
             if (state is ForgetPasswordSuccess) {
-              FunctionsHelper.showSnackBar(context, message: state.msg, isError: false);
-              // Navigate to OTP Screen automatically after sending the code
+              FunctionsHelper.showSnackBar(
+                context,
+                message: state.msg,
+                isError: false,
+              );
               Navigator.pushNamed(context, AppRoutes.otpScreen);
-            } 
-            // Failure Case
-            else if (state is ForgetPasswordFailure) {
+            } else if (state is ForgetPasswordFailure) {
               FunctionsHelper.showSnackBar(context, message: state.errorMsg);
             }
           },
@@ -36,14 +37,13 @@ class ForgotPasswordScreen extends StatelessWidget {
 
             return SingleChildScrollView(
               child: Center(
-                // Added Form widget to use the form key for validation
                 child: Form(
                   key: authCubit.passwordRecoveryFormKey,
                   child: Column(
                     children: [
                       const BackArrow(),
                       const SizedBox(height: 30),
-                       AuthHeader(
+                      AuthHeader(
                         title: AppStrings.appName,
                         subtitle: AppStrings.enterYourEmail,
                         fontSize: 30,
@@ -52,26 +52,22 @@ class ForgotPasswordScreen extends StatelessWidget {
                         textColor: AppColors.primaryColor,
                       ),
                       const SizedBox(height: 12),
-                      
-                      // Bind the controller from the Cubit
                       CustomTextFormField(
-                        controller: authCubit.resetEmail, 
+                        controller: authCubit.resetEmail,
                         hintText: AppStrings.emailExample,
                         labelText: "",
-                        // Optional: Add validator if CustomTextFormField supports it
-                        // validator: (value) => value!.isEmpty ? "Required" : null,
+                        validator: AppValidators.validateEmail,
                       ),
-                      
                       const SizedBox(height: 60),
-                      
-                      // Show loading indicator when the API is being called
                       state is ForgetPasswordLoading
                           ? const CircularProgressIndicator()
                           : CustomFormButton(
                               innerText: AppStrings.confirm,
                               onTap: () {
-                                // Validate the form before sending the request
-                                if (authCubit.passwordRecoveryFormKey.currentState!.validate()) {
+                                if (authCubit
+                                    .passwordRecoveryFormKey
+                                    .currentState!
+                                    .validate()) {
                                   authCubit.forgetPassword();
                                 }
                               },

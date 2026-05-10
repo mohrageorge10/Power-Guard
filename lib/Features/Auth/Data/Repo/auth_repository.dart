@@ -1,10 +1,8 @@
-import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Local_Storage/cache_helper.dart';
 import 'package:power_guard/Core/Networking/API/api_keys.dart';
 import 'package:power_guard/Core/Networking/API/dio_consumer.dart';
 import 'package:power_guard/Core/Networking/API/end_point.dart';
 import 'package:power_guard/Features/Auth/Data/Models/auth_model.dart';
-
 
 class AuthRepository {
   final DioConsumer api;
@@ -88,7 +86,7 @@ class AuthRepository {
     final response = await api.post(
       EndPoint.refreshToken,
       data: {
-        ApiKey.accessToken: accessToken, 
+        ApiKey.accessToken: accessToken,
         ApiKey.refreshToken: refreshToken,
       },
     );
@@ -111,14 +109,11 @@ class AuthRepository {
   // 4. Logout
   Future<void> logout({required String token}) async {
     try {
-      await api.post(
-        EndPoint.logout,
-        data: token, 
-      );
+      await api.post(EndPoint.logout, data: token);
     } finally {
-      // We use 'finally' to ensure local data is cleared 
+      // We use 'finally' to ensure local data is cleared
       // even if the server request fails (e.g., no internet)
-      
+
       await CacheHelper.removeData(key: ApiKey.token);
       await CacheHelper.removeData(key: ApiKey.refreshToken);
       await CacheHelper.removeData(key: ApiKey.role);
@@ -134,25 +129,30 @@ class AuthRepository {
   }
 
   // 6. Forget Password
-  Future<String> forgetPassword({required String email}) async {
+ Future<String> forgetPassword({required String email}) async {
     final response = await api.post(
       EndPoint.forgetPassword,
       data: {ApiKey.email: email},
     );
-    return response[ApiKey.msg] ?? AppStrings.otpSent;
+    return response.toString(); 
   }
 
   // 7. Verify OTP
   Future<String> verifyOtp({required String email, required String otp}) async {
     final response = await api.post(
       EndPoint.verifyOtp,
-      data: {ApiKey.email: email, ApiKey.otp: otp},
+      data: {
+        ApiKey.email: email, 
+        ApiKey.otp: otp,
+      },
     );
-    return response[ApiKey.resetToken];
+    
+    // We use ApiKey.token because the backend sends it as "token" in the JSON
+    return response[ApiKey.token]; 
   }
 
   // 8. Reset Password
-  Future<String> resetPassword({
+ Future<String> resetPassword({
     required String email,
     required String resetToken,
     required String newPassword,
@@ -165,6 +165,15 @@ class AuthRepository {
         ApiKey.newPassword: newPassword,
       },
     );
-    return response[ApiKey.msg] ?? AppStrings.passwordResetSuccess;
+
+    if (response is String) {
+      return response;
+    } 
+    else if (response is Map<String, dynamic>) {
+      return response[ApiKey.msg] ?? "Password reset successfully";
+    } 
+    else {
+      return "Password reset successfully";
+    }
   }
 }

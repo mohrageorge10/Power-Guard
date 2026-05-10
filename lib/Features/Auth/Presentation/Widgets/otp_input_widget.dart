@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
-import 'package:power_guard/Core/Constants/app_colors.dart'; // تأكدي من مسار ألوانك
+import 'package:power_guard/Core/Constants/app_colors.dart';
+import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
 
 class OtpInputWidget extends StatelessWidget {
   const OtpInputWidget({super.key});
@@ -28,14 +30,18 @@ class OtpInputWidget extends StatelessWidget {
       ),
     );
 
+    // Get the cubit instance
+    final cubit = context.read<AuthCubit>();
+
     return Pinput(
-      length: 4,
+      length: 6, // Make sure your backend expects a 6-digit OTP
+      controller: cubit.otpCode, // 👈 THE FIX: Linking the controller here!
       defaultPinTheme: defaultPinTheme,
       focusedPinTheme: focusedPinTheme,
-
       onCompleted: (pin) {
         debugPrint('OTP: $pin');
-        // context.read<AuthCubit>().verifyOtp(pin);
+        // Call verifyOtp without arguments, it will read from the linked controller
+        cubit.verifyOtp(); 
       },
     );
   }

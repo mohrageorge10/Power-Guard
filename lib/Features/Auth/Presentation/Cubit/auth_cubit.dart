@@ -35,15 +35,18 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController otpCode = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
 
+  // ================= Reset Password Form =================
+  GlobalKey<FormState> resetPasswordFormKey = GlobalKey();
+
   // ================= Login Method =================
   Future<void> login() async {
     try {
       emit(LoginLoading());
-      await authRepo.login(
+      final authModel = await authRepo.login(
         email: loginEmail.text,
         password: loginPassword.text,
       );
-      emit(LoginSuccess());
+      emit(LoginSuccess(role: authModel.role ?? 'Unknown'));
     } on ServerException catch (e) {
       emit(LoginFailure(errorMsg: e.errorModel.errorMsg));
     } catch (e) {
@@ -87,16 +90,23 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> verifyOtp() async {
     try {
       emit(VerifyOtpLoading());
-      final response = await authRepo.verifyOtp(
+      
+      final String token = await authRepo.verifyOtp(
         email: resetEmail.text,
         otp: otpCode.text,
       );
 
-      tempResetToken = response;
+      tempResetToken = token;
 
-      emit(VerifyOtpSuccess(msg: AppStrings.otpVerified));
+      emit(VerifyOtpSuccess(
+        msg: AppStrings.otpVerified, 
+        resetToken: token, 
+      ));
+      
     } on ServerException catch (e) {
       emit(VerifyOtpFailure(errorMsg: e.errorModel.errorMsg));
+    } catch (e) {
+      emit(VerifyOtpFailure(errorMsg: e.toString()));
     }
   }
 
@@ -136,4 +146,8 @@ class AuthCubit extends Cubit<AuthState> {
     selectedRole = role;
     emit(RoleSelected());
   }
+
+  void resetAuthState() {
+  emit(AuthInitial());
+}
 }

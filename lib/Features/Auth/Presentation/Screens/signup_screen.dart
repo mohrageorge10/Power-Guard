@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
+import 'package:power_guard/Core/Utils/app_validators.dart';
 import 'package:power_guard/Core/Utils/functions_helper.dart';
 import 'package:power_guard/Core/Widgets/auth_header.dart';
 import 'package:power_guard/Features/Auth/Presentation/Cubit/auth_cubit.dart';
@@ -67,6 +68,7 @@ class SignUpScreen extends StatelessWidget {
                             hintText: AppStrings.nameExample,
                             labelText: AppStrings.name,
                             controller: cubit.registerUserName,
+                            validator: AppValidators.validateName,
                           ),
                           const SizedBox(height: 22),
                           // Email
@@ -74,6 +76,7 @@ class SignUpScreen extends StatelessWidget {
                             hintText: AppStrings.emailExample,
                             labelText: AppStrings.email,
                             controller: cubit.registerEmail,
+                            validator: AppValidators.validateEmail,
                           ),
                           const SizedBox(height: 22),
                           // Password
@@ -83,6 +86,7 @@ class SignUpScreen extends StatelessWidget {
                             obscureText: true,
                             suffixIcon: true,
                             controller: cubit.registerPassword,
+                            validator: AppValidators.validatePassword,
                           ),
                           const SizedBox(height: 22),
                           // Confirm Password
@@ -92,6 +96,10 @@ class SignUpScreen extends StatelessWidget {
                             obscureText: true,
                             suffixIcon: true,
                             controller: cubit.registerConfirmPassword,
+                            validator: (value) => AppValidators.validateConfirmPassword(
+                              value, 
+                              cubit.registerPassword.text,
+                            ),
                           ),
                           const SizedBox(height: 22),
                           // Phone
@@ -99,6 +107,7 @@ class SignUpScreen extends StatelessWidget {
                             hintText: AppStrings.phoneExample,
                             labelText: AppStrings.phone,
                             controller: cubit.registerPhoneNumber,
+                            validator: AppValidators.validatePhoneNumber,
                           ),
 
                           const SizedBox(height: 52),

@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
-import 'package:power_guard/Core/Constants/app_strings.dart';
-import 'package:power_guard/Core/Local_Storage/cache_helper.dart';
-import 'package:power_guard/Core/Networking/API/api_keys.dart';
 import 'package:power_guard/Core/Routing/app_routes.dart';
 
 class NavigationDecider {
- static void navigateBasedOnRole(BuildContext context) {
-    final String role = CacheHelper.getData(key: ApiKey.role) ?? "";
+  static const String roleAdmin = "Admin"; 
+  static const String roleFactoryManager = "FactoryManager"; 
+  static const String roleDepartmentManager = "DepartmentManager";
 
-    if (role == AppStrings.adminRole) {
-      Navigator.pushReplacementNamed(context, AppRoutes.adminHomeScreen);
-    } else if (role == AppStrings.managerTitle) {
+  // Pass the role directly as a parameter
+  static void navigateBasedOnRole(BuildContext context, String role) {
+    if (role == roleAdmin) {
+      Navigator.pushReplacementNamed(context, AppRoutes.adminHomeScreen); // Make sure this route is correct
+    } else if (role == roleFactoryManager) {
       Navigator.pushReplacementNamed(context, AppRoutes.factoryMangerScreen);
-    } else if (role == AppStrings.leadTitle) {
+    } else if (role == roleDepartmentManager) {
       Navigator.pushReplacementNamed(context, AppRoutes.deptHomeScreen);
     } else {
-       ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Invalid Role"),
-                    backgroundColor: AppColors.errorColor,
-                  ),
-                );
+      // Print the exact role value so we can see if it's empty or wrong
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Invalid Role Detected: '$role'"),
+          backgroundColor: AppColors.errorColor,
+        ),
+      );
     }
   }
 }

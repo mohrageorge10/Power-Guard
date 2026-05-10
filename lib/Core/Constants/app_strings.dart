@@ -82,11 +82,13 @@ class AppStrings {
   static String nameExample = 'Killua';
   static String phoneExample = '01234567890';
 
-  // ---- Forgot Password & OTP Screens ----
+  // ---- Forgot Password & OTP & Reset Screens ----
   static String forgotPassword = 'Forgot Password?';
   static String emailExample = '@gmail.com';
   static String confirm = 'Confirm';
   static String enterOtp = 'Enter the OTP';
+  static String newPassword = 'New Password';
+  static String createNewPassword = "Create a new password to secure your account.";
 
   // ---- Onboarding Screen 1 ---
   static const String onboardingTitle1 = 'Smart \nDefense for\nyour Energy';
