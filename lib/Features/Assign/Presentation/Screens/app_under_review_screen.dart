@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:power_guard/Core/Constants/app_colors.dart';
 import 'package:power_guard/Core/Constants/assets.dart';
+import 'package:power_guard/Core/Routing/app_routes.dart';
 import 'package:power_guard/Features/Assign/Presentation/Widgets/next_step.dart';
 import 'package:power_guard/Features/Assign/Presentation/Widgets/whats_next_header.dart';
-import '../../../Auth/Presentation/Widgets/custom_form_button.dart';
 import 'package:power_guard/Core/Constants/app_strings.dart';
-
+import 'package:power_guard/Features/Auth/Presentation/Widgets/custom_form_button.dart';
 
 class ApplicationUnderReviewScreen extends StatelessWidget {
   final String factoryName;
@@ -42,11 +42,9 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
               const SizedBox(height: 35),
 
               // Verified icon
-              Container(
+              SizedBox(
                 width: 80,
                 height: 80,
-                decoration: BoxDecoration(
-                ),
                 child: Center(
                   child: Image.asset(
                     Assets.imagesReview,
@@ -82,7 +80,7 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
               ),
               const SizedBox(height: 50),
 
-              // What's next card
+              // Review Data Card
               Container(
                 height: 200,
                 width: double.infinity,
@@ -94,22 +92,22 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
-                    WhatsNextHeader(),
-                    SizedBox(height: 16),
+                  children: [
+                    const WhatsNextHeader(),
+                    const SizedBox(height: 16),
                     NextStep(
                       iconPath: Assets.imagesNumber1,
-                      label: AppStrings.factoryName,
+                      label: factoryName, // Display actual typed name
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     NextStep(
                       iconPath: Assets.imagesNumber2,
-                      label: AppStrings.factoryLocation,
+                      label: factoryLocation, // Display actual typed location
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     NextStep(
                       iconPath: Assets.imagesNumber3,
-                      label: AppStrings.factoryDescription,
+                      label: factoryDescription, // Display actual typed description
                     ),
                   ],
                 ),
@@ -117,9 +115,11 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
               const SizedBox(height: 40),
 
               CustomFormButton(
-                innerText: AppStrings.editData,
-                onTap: () => Navigator.pop(context),
-                ),
+                innerText: "Back to Login", 
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(context, AppRoutes.loginScreen, (route) => false);
+                }, 
+              ),
               const SizedBox(height: 24),
             ],
           ),
